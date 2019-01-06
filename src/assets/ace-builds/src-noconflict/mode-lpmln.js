@@ -58,16 +58,38 @@ var TextMode = require("./text").Mode;
 var CstyleBehaviour = require("./behaviour/cstyle").CstyleBehaviour;
 var CStyleFoldMode = require("./folding/cstyle").FoldMode;
 
+
 var Mode = function() {
     this.HighlightRules = LpmlnHighlightRules;
     this.$behaviour = new CstyleBehaviour();
     this.foldingRules = new CStyleFoldMode();
+
 };
 oop.inherits(Mode, TextMode);
 
 (function() {
     this.$id = "ace/mode/lpmln";
-}).call(Mode.prototype);
+    var WorkerClient = require("ace/worker/worker_client").WorkerClient;
+    this.createWorker = function(session) {
+    this.$worker = new WorkerClient(["ace"], "ace/worker/my-worker", "MyWorker", "./assets/ace-builds/src-noconflict/my-worker.js");
+    this.$worker.attachToDocument(session.getDocument());
+
+    this.$worker.on("errors", function(e) {
+      session.setAnnotations(e.data);
+    });
+
+    this.$worker.on("annotate", function(e) {
+      session.setAnnotations(e.data);
+    });
+
+    this.$worker.on("terminate", function() {
+      session.clearAnnotations();
+    });
+
+    return this.$worker;};
+
+
+  }).call(Mode.prototype);
 
 exports.Mode = Mode
 });

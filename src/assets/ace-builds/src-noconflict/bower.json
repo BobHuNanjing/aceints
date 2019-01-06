@@ -1,0 +1,21 @@
+{
+  "name": "src-noconflict",
+  "homepage": "https://github.com/BobHuNanjing/aceints",
+  "authors": [
+    "bobhu <hrqnanjing@seu.edu.cn>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "ace-builds": "^1.2.3",
+    "ace-worker": "^1.2.3"
+  }
+}
