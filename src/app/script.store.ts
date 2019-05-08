@@ -3,5 +3,5 @@ interface Scripts {
     src: string;
 }  
 export const ScriptStore: Scripts[] = [
-    {name: 'editorInit', src: '../assets/ace-builds/src-noconflict/ace.js'}
+    {name: 'editorInit', src: '../assets/dist/bundle.js'}
 ];

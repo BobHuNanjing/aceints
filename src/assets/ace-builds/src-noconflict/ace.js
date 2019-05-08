@@ -9112,8 +9112,3 @@ define("ace/mode/json_highlight_rules", ["require", "exports", "module", "ace/li
     }
   });
 })();
-
-var editor = ace.edit("editor");
-editor.setTheme("ace/theme/monokai");
-editor.session.setMode("ace/mode/lpmln");
-editor.setOption("autoScrollEditorIntoView", true);
